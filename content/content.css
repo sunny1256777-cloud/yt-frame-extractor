@@ -1,0 +1,187 @@
+/* YouTube Frame Extractor - In-page UI Styles */
+
+.yt-fe-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff0033, #cc0000);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(255, 0, 51, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  user-select: none;
+}
+
+.yt-fe-floating-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(255, 0, 51, 0.6), 0 4px 10px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff1a47, #e60000);
+}
+
+.yt-fe-floating-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.yt-fe-floating-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* In-page Progress Card */
+.yt-fe-overlay-card {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  width: 320px;
+  background: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #f1f1f1;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.3);
+  animation: yt-fe-fade-in 0.3s ease-out;
+}
+
+@keyframes yt-fe-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.yt-fe-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.yt-fe-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.yt-fe-card-title span.badge {
+  background: #ff0033;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.yt-fe-close-btn {
+  background: transparent;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: all 0.2s;
+}
+
+.yt-fe-close-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.yt-fe-progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.yt-fe-progress-pct {
+  font-weight: 700;
+  color: #ff3b5c;
+}
+
+.yt-fe-progress-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.yt-fe-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff0033, #ff4d6d);
+  border-radius: 10px;
+  transition: width 0.15s ease-out;
+}
+
+.yt-fe-status-text {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yt-fe-actions-row {
+  display: flex;
+  gap: 8px;
+}
+
+.yt-fe-btn {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.yt-fe-btn-stop {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.yt-fe-btn-stop:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.yt-fe-btn-cancel {
+  background: rgba(255, 0, 51, 0.15);
+  color: #ff4d6d;
+}
+
+.yt-fe-btn-cancel:hover {
+  background: rgba(255, 0, 51, 0.3);
+}

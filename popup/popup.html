@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Frame Extractor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-box">
+        <svg viewBox="0 0 24 24" class="logo-icon">
+          <path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="app-title">YT Frame Extractor</h1>
+        <p class="app-tagline">Video to 1 frame/sec ZIP bundle</p>
+      </div>
+    </header>
+
+    <!-- Video Info Card -->
+    <div id="video-info-card" class="card video-card">
+      <div class="status-indicator-row">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="status-label" id="status-label">Detecting YouTube video...</span>
+      </div>
+      <div id="video-details" class="video-details hidden">
+        <div class="video-title" id="video-title">Title loading...</div>
+        <div class="video-meta-badges">
+          <span class="badge" id="badge-duration">⏱ 00:00</span>
+          <span class="badge" id="badge-resolution">📐 1080p</span>
+          <span class="badge highlight" id="badge-est-frames">🎞 ~0 frames</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extraction Settings -->
+    <div id="settings-card" class="card settings-card">
+      <!-- Interval -->
+      <div class="form-group">
+        <label for="interval-select">Extraction Rate:</label>
+        <select id="interval-select" class="form-control">
+          <option value="1" selected>1 frame every 1 second (1 FPS)</option>
+          <option value="0.5">2 frames every 1 second (2 FPS)</option>
+          <option value="2">1 frame every 2 seconds (0.5 FPS)</option>
+          <option value="5">1 frame every 5 seconds</option>
+          <option value="custom">Custom interval...</option>
+        </select>
+      </div>
+
+      <div class="form-group hidden" id="custom-interval-group">
+        <label for="custom-interval">Interval in seconds:</label>
+        <input type="number" id="custom-interval" class="form-control" value="1" min="0.1" step="0.5">
+      </div>
+
+      <!-- Range Option -->
+      <div class="form-group">
+        <label>Range:</label>
+        <div class="radio-row">
+          <label class="radio-item">
+            <input type="radio" name="range-type" value="all" checked id="range-all"> Entire Video
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="range-type" value="custom" id="range-custom"> Custom Range
+          </label>
+        </div>
+      </div>
+
+      <div class="range-inputs-row hidden" id="custom-range-group">
+        <div class="form-group flex-1">
+          <label for="range-start">Start (sec):</label>
+          <input type="number" id="range-start" class="form-control" value="0" min="0">
+        </div>
+        <div class="form-group flex-1">
+          <label for="range-end">End (sec):</label>
+          <input type="number" id="range-end" class="form-control" value="60" min="1">
+        </div>
+      </div>
+
+      <!-- Format & Quality -->
+      <div class="flex-row gap-8">
+        <div class="form-group flex-1">
+          <label for="format-select">Format:</label>
+          <select id="format-select" class="form-control">
+            <option value="image/jpeg" selected>JPG (Compressed)</option>
+            <option value="image/png">PNG (Lossless)</option>
+          </select>
+        </div>
+        <div class="form-group flex-1">
+          <label for="quality-select">Quality:</label>
+          <select id="quality-select" class="form-control">
+            <option value="0.85" selected>High (85%)</option>
+            <option value="0.95">Very High (95%)</option>
+            <option value="0.70">Medium (70%)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Card (when extracting) -->
+    <div id="progress-card" class="card progress-card hidden">
+      <div class="progress-header">
+        <span class="progress-status" id="progress-status-text">Capturing frames...</span>
+        <span class="progress-percent" id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-stats">
+        <span id="progress-count">0 / 0 frames</span>
+        <span id="progress-state-badge" class="state-badge">EXTRACTING</span>
+      </div>
+
+      <div class="progress-buttons">
+        <button id="btn-pause" class="btn btn-secondary">⏸ Pause</button>
+        <button id="btn-stop-save" class="btn btn-secondary">⏹ Save Now</button>
+        <button id="btn-cancel" class="btn btn-danger">✕ Cancel</button>
+      </div>
+    </div>
+
+    <!-- Primary Action Button -->
+    <div class="action-footer">
+      <button id="btn-start" class="btn btn-primary" disabled>
+        <svg viewBox="0 0 24 24" class="btn-icon">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <span>Extract Frames & Download ZIP</span>
+      </button>
+    </div>
+
+    <div class="footer-note">
+      Har second ka 1 frame extract karke instant .ZIP file banata hai.
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
